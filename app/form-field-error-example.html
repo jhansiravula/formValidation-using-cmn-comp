@@ -1,0 +1,21 @@
+<form [formGroup]="userForm" (ngSubmit)="submit()">
+	<mat-form-field>
+		<input matInput placeholder="name" formControlName="name" required>
+		<mat-error *ngIf="userForm.get('name').status === 'INVALID'">
+			<validation-errors [errors]="userForm.get('name').errors"></validation-errors>      
+		</mat-error>
+	</mat-form-field>
+  	<mat-form-field>
+		<input matInput placeholder="file name" formControlName="fileName" required>
+		<mat-error *ngIf="userForm.get('name').status === 'INVALID'">
+			<validation-errors [errors]="userForm.get('name').errors" errorPrefix="The file is"></validation-errors>      
+		</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput placeholder="email" formControlName="email" required>
+		<mat-error *ngIf="userForm.get('email').status === 'INVALID'">
+			<validation-errors [errors]="userForm.get('email').errors"></validation-errors>
+		</mat-error>
+	</mat-form-field>
+   <button mat-raised-button class="mat-raised-button" color="accent">SUBMIT</button>
+</form>
