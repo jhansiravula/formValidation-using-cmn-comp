@@ -3,24 +3,21 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 
 @Component({
   selector: 'form-field-error-example',
   templateUrl: 'form-field-error-example.html',
-  styleUrls: ['form-field-error-example.css']
+  styleUrls: ['form-field-error-example.css'],
 })
 export class FormFieldErrorExample {
   userForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder
-
-  ) {
+  constructor(private formBuilder: FormBuilder) {
     this.userForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      fileName: ['', [Validators.required]],
+      fileName: ['', [Validators.required, Validators.min(1)]],
       email: ['', [Validators.required, Validators.email]],
     });
   }
@@ -28,7 +25,7 @@ export class FormFieldErrorExample {
   submit() {
     const nameControl = this.userForm.get('name');
     nameControl.setErrors({
-      "notUnique": true
+      notUnique: true,
     });
   }
 }
